@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>选择图片生成base64数据</title>
+    <script>
+        function getUrl(file) {
+
+            var $div = document.getElementById("text");
+            var img = document.getElementById("Image");
+            console.log(file.length);
+
+            var tmpFile = file[0];
+            var reader = new FileReader();
+            reader.readAsDataURL(tmpFile);
+            reader.onload = function (e) {
+                var url = e.target.result;
+                img.src = url;
+//                console.log(url);
+                $div.innerHTML = url.substring(23);
+            }
+//            for (var intI = 0; intI < file.length; intI++) {//图片回显
+//
+//            }
+        }
+
+    </script>
+    <style>
+        #text {
+            width: 500px;
+            border: 1px solid red;
+            height: 100px;
+            overflow-y: scroll;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+<input type="file" id="fileId" name="fileId" value="上传图片" onchange="getUrl(this.files);"/>
+<div id="text"></div>
+<img src="" id="Image" width="500px" height="auto">
+</body>
+</html>
